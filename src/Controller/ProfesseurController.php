@@ -80,11 +80,11 @@ final class ProfesseurController extends AbstractController
     }
 
 
-    #[Route('/update/{id}', name: 'prof_update', methods: ['PUT'])]
-    public function profUpdate(Request $request): Response
-    {
-        ////
-                ///
-    }
+    // #[Route('/update/{id}', name: 'prof_update', methods: ['PUT'])]
+    // public function profUpdate(Request $request): Response
+    // {
+    //     ////
+    //             ///
+    // }
 
 }
