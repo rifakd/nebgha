@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devoir index{% endblock %}
+
+{% block body %}
+    <h1>Devoir index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>HeureDebut</th>
+                <th>HeureFin</th>
+                <th>Score</th>
+                <th>Etat</th>
+                <th>NbrQuestion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for devoir in devoirs %}
+            <tr>
+                <td>{{ devoir.id }}</td>
+                <td>{{ devoir.heureDebut ? devoir.heureDebut|date('H:i:s') : '' }}</td>
+                <td>{{ devoir.heureFin ? devoir.heureFin|date('H:i:s') : '' }}</td>
+                <td>{{ devoir.score }}</td>
+                <td>{{ devoir.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ devoir.nbrQuestion }}</td>
+                <td>
+                    <a href="{{ path('app_devoir_show', {'id': devoir.id}) }}">show</a>
+                    <a href="{{ path('app_devoir_edit', {'id': devoir.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_devoir_new') }}">Create new</a>
+{% endblock %}

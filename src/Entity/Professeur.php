@@ -18,6 +18,13 @@ class Professeur extends User  // Héritage de User
     private ?\DateTimeInterface $DateEmbauche = null;
 
     /**
+     * @var Collection<int, Formation>
+     */
+    #[ORM\OneToMany(targetEntity: Formation::class, mappedBy: 'id_prof')]
+    private Collection $formations;
+
+
+        /**
      * @var Collection<int, Chat>
      */
     #[ORM\OneToMany(targetEntity: Chat::class, mappedBy: 'idProfesseur')]
@@ -25,6 +32,7 @@ class Professeur extends User  // Héritage de User
 
     public function __construct()
     {
+        $this->formations = new ArrayCollection();
         $this->chats = new ArrayCollection();
     }
 
@@ -48,6 +56,36 @@ class Professeur extends User  // Héritage de User
     public function setDateEmbauche(\DateTimeInterface $DateEmbauche): static
     {
         $this->DateEmbauche = $DateEmbauche;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Formation>
+     */
+    public function getFormations(): Collection
+    {
+        return $this->formations;
+    }
+
+    public function addFormation(Formation $formation): static
+    {
+        if (!$this->formations->contains($formation)) {
+            $this->formations->add($formation);
+            $formation->setIdProf($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormation(Formation $formation): static
+    {
+        if ($this->formations->removeElement($formation)) {
+            // set the owning side to null (unless already changed)
+            if ($formation->getIdProf() === $this) {
+                $formation->setIdProf(null);
+            }
+        }
 
         return $this;
     }
