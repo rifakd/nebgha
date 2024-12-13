@@ -59,11 +59,6 @@ class HomeController extends AbstractController
     {
         return $this->render('back/profile.html.twig');
     }
-    #[Route('/home11', name: 'app_home11')]
-    public function index11(): Response
-    {
-        return $this->render('back/rtl.html.twig');
-    }
     #[Route('/home12', name: 'app_home12')]
     public function index12(): Response
     {
@@ -78,10 +73,5 @@ class HomeController extends AbstractController
     public function index14(): Response
     {
         return $this->render('back/tables.html.twig');
-    }
-    #[Route('/home15', name: 'app_home15')]
-    public function index15(): Response
-    {
-        return $this->render('back/virtual-reality.html.twig');
     }
 }
