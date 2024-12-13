@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<title>Cours</title>
+
+{% block body %}
+    <h1>Cours</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cour.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ cour.nom }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ cour.dateCreation ? cour.dateCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ cour.description }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ cour.duree }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ cour.date ? cour.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureDebut</th>
+                <td>{{ cour.heureDebut ? cour.heureDebut|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cours_index') }}">back to list</a>
+
+    <a href="{{ path('app_cours_edit', {'id': cour.id}) }}">edit</a>
+
+    {{ include('cours/_delete_form.html.twig') }}
+{% endblock %}
